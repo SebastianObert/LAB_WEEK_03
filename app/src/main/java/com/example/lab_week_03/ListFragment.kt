@@ -9,22 +9,15 @@ import androidx.fragment.app.Fragment
 
 class ListFragment : Fragment(), View.OnClickListener {
 
-    private var param1: String? = null
-    private var param2: String? = null
-
-    private lateinit var coffeeListener: CoffeeListener
+    private lateinit var coffeeListener: MainActivity.CoffeeListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is CoffeeListener) {
+        if (context is MainActivity.CoffeeListener) {
             coffeeListener = context
         } else {
-            throw RuntimeException("Must implement CoffeeListener")
+            throw RuntimeException("Activity must implement CoffeeListener")
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -37,10 +30,10 @@ class ListFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val coffeeList = listOf<View>(
-            view.findViewById(R.id.affogato),
-            view.findViewById(R.id.americano),
-            view.findViewById(R.id.latte)
+        val coffeeList = listOf(
+            view.findViewById<View>(R.id.affogato),
+            view.findViewById<View>(R.id.americano),
+            view.findViewById<View>(R.id.latte)
         )
 
         coffeeList.forEach {
