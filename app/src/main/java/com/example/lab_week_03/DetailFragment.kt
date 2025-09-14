@@ -26,7 +26,14 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setCoffeeData(args.coffeeId)
+
+        // 🔹 Back button action
+        val backButton: View = view.findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     fun setCoffeeData(id: Int) {
@@ -42,6 +49,14 @@ class DetailFragment : Fragment() {
             R.id.latte -> {
                 coffeeTitle?.text = getString(R.string.latte_title)
                 coffeeDesc?.text = getString(R.string.latte_desc)
+            }
+            R.id.cappuccino -> {
+                coffeeTitle?.text = "Cappuccino"
+                coffeeDesc?.text = "A rich coffee with steamed milk foam."
+            }
+            R.id.mocha -> {
+                coffeeTitle?.text = "Mocha"
+                coffeeDesc?.text = "A chocolate flavored variant of a latte."
             }
         }
     }
